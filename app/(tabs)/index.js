@@ -76,7 +76,7 @@ export default function HomeScreen() {
               >
                 <MaterialIcons name="monetization-on" size={20} color="#fff" />
                 <Text style={styles.claimText}>
-                  {claimed ? 'CLAIMED' : 'CLAIM 10 COINS'}
+                  {claimed ? 'CLAIMED' : '10 COINS'}
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -99,7 +99,7 @@ export default function HomeScreen() {
         {/* Featured Banner */}
         <TouchableOpacity style={[styles.banner, styles.elevatedCard]}>
           <Image 
-            source={require('../../assets/logo-white.png')} 
+            source={require('../../assets/cricket.png')} 
             style={styles.bannerImage}
             resizeMode="cover"
           />
