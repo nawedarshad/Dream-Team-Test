@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Animated, Easing, 
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { ActivityIndicator } from 'react-native';
 
 export default function Signup() {
   const router = useRouter();

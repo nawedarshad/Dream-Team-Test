@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Animated, Easing, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
@@ -32,12 +33,14 @@ export default function Rewards() {
           colors={['rgba(18,18,18,0.9)', 'rgba(18,18,18,0)']}
           style={styles.headerGradient}
         >
-          <Text style={styles.headerText}>DREAMTEAM REWARDS</Text>
-          <TouchableOpacity style={styles.coinContainer}>
+          <Text style={styles.title}>DREAMTEAM</Text>
+          <View style={styles.coinsContainer}>
             <MaterialIcons name="monetization-on" size={24} color="#FFD700" />
-            <Text style={styles.coinText}>35</Text>
-            <MaterialIcons name="add" size={20} color="#FFD700" style={styles.addIcon} />
-          </TouchableOpacity>
+            <Text style={styles.coinsText}>35</Text>
+            <TouchableOpacity style={styles.addButton}>
+              <Ionicons name="add" size={20} color="#FFD700" />
+            </TouchableOpacity>
+          </View>
         </LinearGradient>
       </Animated.View>
 
@@ -207,7 +210,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     paddingHorizontal: 16,
-    paddingTop: 60,
+    paddingTop: 120,
   },
   header: {
     position: 'absolute',
@@ -224,31 +227,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 15,
   },
-  headerText: {
-    fontSize: 20,
+  title: {
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
     fontFamily: 'Inter_800ExtraBold',
     letterSpacing: 1,
   },
-  coinContainer: {
+  coinsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'rgba(30,30,30,0.7)',
     borderRadius: 20,
     paddingVertical: 5,
-    paddingHorizontal: 12,
+    paddingHorizontal: 10,
   },
-  coinText: {
+  coinsText: {
     color: '#FFD700',
-    marginHorizontal: 5,
+    marginLeft: 5,
     fontSize: 16,
     fontFamily: 'Inter_600SemiBold',
   },
-  addIcon: {
-    marginLeft: 5,
+  addButton: {
+    marginLeft: 8,
   },
-  elevatedCard: {
+    elevatedCard: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.3,
