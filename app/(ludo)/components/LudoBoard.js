@@ -1770,7 +1770,9 @@ export default class LudoBoard extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'khaki',
+    backgroundColor: '#f8f8f8',
+    padding: 10,
+    borderRadius: 8,
   },
   red : {
     backgroundColor : "#fa9daa"
