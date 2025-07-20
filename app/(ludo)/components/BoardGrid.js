@@ -1,37 +1,78 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions, ImageBackground } from 'react-native';
 import Token from './Token';
 
-export default function BoardGrid({ positions, onMove }) {
-  const cells = Array.from({ length: 52 }, (_, i) => i);
+const { width } = Dimensions.get('window');
+const BOARD_SIZE = width * 0.9;
+const CELL_COUNT = 15;
+const CELL_SIZE = BOARD_SIZE / CELL_COUNT;
+
+const homeTokenGridPositions = {
+  green:    [ [1.7,1.9], [1.7,3.5], [3.4,1.9], [3.4,3.5] ],
+  yellow:  [ [1.7,10.5], [1.7,12.1], [3.4,10.5], [3.4,12.1] ],
+  blue: [ [10.2,10.5], [10.2,12.1], [11.9,10.5], [11.9,12.1] ],
+  red:   [ [10.2,1.9], [10.2,3.5], [11.9,1.9], [11.9,3.5] ],
+};
+
+export default function LudoGrid() {
+  const rows = Array(CELL_COUNT).fill(0);
   return (
-    <View style={styles.board}>
-      {cells.map((cell) => (
-        <View key={cell} style={styles.cell}>
-          {Object.entries(positions).map(([player, tokens]) =>
-            tokens.map((pos, idx) =>
-              pos === cell ? (
-                <Token key={`${player}-${idx}`} player={+player} onPress={() => onMove(+player, idx)} />
-              ) : null
-            )
-          )}
-        </View>
-      ))}
-    </View>
+    <ImageBackground source={require('../assets/ludo.jpg')} style={styles.container}>
+      <View style={styles.board}>
+        {rows.map((_, r) => (
+          <View key={r} style={styles.row}>
+            {rows.map((_, c) => (
+              <View
+                key={`${r}-${c}`}
+                style={styles.cell} // invisible grid
+              />
+            ))}
+          </View>
+        ))}
+
+        {Object.entries(homeTokenGridPositions).map(([color, positions], idx) => (
+          positions.map((pos, i) => (
+            <View
+              key={`${color}-${i}`}
+              style={{
+                position: 'absolute',
+                top: pos[0] * CELL_SIZE,
+                left: pos[1] * CELL_SIZE,
+                width: CELL_SIZE,
+                height: CELL_SIZE,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Token
+                player={idx}
+                currentPlayer={0}
+                onPress={() => {}}
+              />
+            </View>
+          ))
+        ))}
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  board: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    width: 260,
-  },
-  cell: {
-    width: 20,
-    height: 20,
-    borderWidth: 1,
+  container: {
+    width: BOARD_SIZE,
+    height: BOARD_SIZE,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  board: {
+    width: BOARD_SIZE,
+    height: BOARD_SIZE,
+  },
+  row: { flexDirection: 'row' },
+  cell: {
+    width: CELL_SIZE,
+    height: CELL_SIZE,
+    backgroundColor: 'transparent', // grid invisible
+    borderWidth: 0, // remove border
   },
 });
