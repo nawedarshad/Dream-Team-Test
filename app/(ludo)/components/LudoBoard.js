@@ -3,6 +3,8 @@ import { View, StyleSheet, Dimensions, ImageBackground, Text } from 'react-nativ
 import BoardGrid from './BoardGrid';
 import Dice from './Dice';
 import CornerProfile from './CornerProfile';
+import PlayerScore from './PlayerScore';
+import GameLog from './GameLog';
 import useLudoGame from '../hooks/useLudoGame';
 
 const { width, height } = Dimensions.get('window');
@@ -13,6 +15,7 @@ export default function LudoBoard() {
     currentPlayer,
     diceValue,
     scores,
+    gameLog,
     canRoll,
     winner,
     playerColors,
@@ -25,7 +28,7 @@ export default function LudoBoard() {
   const playerNames = ["Computer 1", "Computer 2", "You", "Computer 3"];
 
   return (
-    <ImageBackground 
+    <ImageBackground
       source={require('../assets/bg.jpg')}
       style={styles.container}
       resizeMode="cover"
@@ -61,13 +64,25 @@ export default function LudoBoard() {
         ))}
       </View>
 
+      {/* Scores */}
+      <View style={styles.scoreRow}>
+        {scores.map((s, i) => (
+          <PlayerScore
+            key={i}
+            player={i}
+            score={s}
+            color={playerColors[i]}
+            isActive={currentPlayer === i}
+          />
+        ))}
+      </View>
+
       {/* Game Board */}
       <View style={styles.boardContainer}>
         <BoardGrid
           positions={positions}
           currentPlayer={currentPlayer}
           moveToken={moveToken}
-          playerColors={playerColors}
         />
       </View>
 
@@ -94,6 +109,8 @@ export default function LudoBoard() {
           </View>
         ))}
       </View>
+
+      <GameLog logs={gameLog} />
 
       {/* Winner Modal */}
       {winner && (
@@ -165,6 +182,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 8
+  },
+  scoreRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 8,
   },
   winnerOverlay: {
     ...StyleSheet.absoluteFillObject,
