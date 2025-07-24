@@ -1,8 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux';
-import { persistor, store } from '$redux/store';
+import { persistor, store } from './src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import RootNavigator from '$navigation/RootNavigator';
+import RootNavigator from './src/navigation/RootNavigator';
 
 const App = () => {
   return (

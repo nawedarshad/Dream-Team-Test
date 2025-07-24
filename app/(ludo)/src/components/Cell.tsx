@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native'
 import React, { memo, useCallback, useMemo } from 'react'
 import { COLORS } from '$constants/colors';
 import Pile from './Pile';
-import { arrowSpots, safeSpots, starSpots } from '$helpers/PlotData';
+import { arrowSpots, safeSpots, starSpots } from '../helpers/PlotData';
 import { StarIcon, ArrowRightIcon } from 'react-native-heroicons/outline';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useAppDispatch, useAppSelector } from '$hooks/useAppStore';
