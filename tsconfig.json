@@ -1,4 +1,16 @@
 {
-  "compilerOptions": {},
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "$assets/*": ["app/(ludo)/src/assets/*"],
+      "$constants/*": ["app/(ludo)/src/constants/*"],
+      "$components/*": ["app/(ludo)/src/components/*"],
+      "$helpers/*": ["app/(ludo)/src/helpers/*"],
+      "$screens/*": ["app/(ludo)/src/screens/*"],
+      "$redux/*": ["app/(ludo)/src/redux/*"],
+      "$hooks/*": ["app/(ludo)/src/hooks/*"],
+      "$navigation/*": ["app/(ludo)/src/navigation/*"]
+    }
+  }
 }
